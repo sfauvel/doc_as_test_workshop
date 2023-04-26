@@ -1,0 +1,3 @@
+= Doc as Test workshop
+
+This workshop aims to experiment the 'Doc as Test' approach
