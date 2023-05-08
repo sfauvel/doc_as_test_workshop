@@ -1,3 +1,183 @@
 = Doc as Test workshop
+:toc:
 
-This workshop aims to experiment the 'Doc as Test' approach
+This workshop aims to experiment the 'Doc as Test' approach.
+You can find some information and resources about the concept at https://sfauvel.github.io/documentationtesting/[DocAsTest] site. 
+
+
+In short, each test generates a paragraph describings a behaviour. 
+The aggregation of all those paragraphs consitute a complete documentation of the product.
+As long as the generated text is the same, the test is passing. 
+Otherwise, something has change and must be verify.
+
+== Doc as code
+
+=== Viewer  
+
+Install an `asciidoc` viewer. 
+The best is to install one in your IDE. 
+
+* Intellij/PyCharm: plugin
+** https://plugins.jetbrains.com/plugin/7391-asciidoc[AsciiDoc plugin]
+* VSCode
+** https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc extension]
+* Web navigator
+** https://addons.mozilla.org/fr/firefox/addon/asciidoctorjs-live-preview/[Firefox - Asciidoctor.js Live Preview]
+** https://chrome.google.com/webstore/detail/asciidoctorjs-live-previe/iaalpfgpbocpdfblpnhhgllgbdbchmia[Chrome - Asciidoctor.js Live Preview]
+** https://microsoftedge.microsoft.com/addons/detail/asciidoctorjs-live-previ/pefkelkanablhjdekgdahplkccnbdggd[Edge - Asciidoctor.js Live Preview]
+
+=== First document
+
+Create a file named with extension .adoc
+
+Write a ascidoc file describing what your are doing.
+Try to format it to be pleasant to read. 
+
+You can found some basic syntaxe here: link:asciidoc.adoc[]
+
+Push this file in a github repo
+
+=== Publish
+
+Create an HTML from asciidoc
+
+* Download asciidoctorJ
+* Use Dockerfile
+* Use a pom.xml
+* With Intellij/VSCode
+* Using Github
+** Create a github pages
+** Add a github action
+
+
+== Living documentation
+
+For this workshop, we will use the https://github.com/emilybache/Parrot-Refactoring-Kata[Parrot refactoring kata] from the https://github.com/emilybache[Emily Bache] repository.
+We will not using it to work on refactoring but to experiment the `Doc as test` approach.
+
+This kata is available in many languages so you can chose your favourite one.
+Nevertheless, we can provide an advanced tooling with Java.
+We also have some support in Python, FSharp, Kotlin. 
+
+The first thing you have to do is to clone the repository and run tests.
+
+// For this workshop, we will use the famous link:https://github.com/emilybache/GildedRose-Refactoring-Kata[GildedRose-Refactoring-Kata]. 
+// It's an exercise to practice at handling legacy code. 
+// That what we will done by creating a description of the behaviors and by creating a test harness in the same time.
+// We won't try to improve the code here.
+// This is not the point of this workshop but I encourage you to do it in a second time.
+// 
+// This kata is declined on a lot of language so you can chose the one you prefer.
+// 
+// other multilanguage kata: 
+// 
+// * https://github1s.com/emilybache/Refactoring-Kata-Lift-Pass-Pricing: WebServer, Mathematic calculation, json response
+// * https://github.com/emilybache/Parrot-Refactoring-Kata: simple calculation, default values
+// * https://github.com/emilybache/Theatrical-Players-Refactoring-Kata: Calculation but Nothing to extract
+// * https://github.com/emilybache/SupermarketReceipt-Refactoring-Kata: Algorithm
+// * https://github1s.com/emilybache/FantasyBattle-Refactoring-Kata/: Not a lot of algo. It may interesting to list added Items
+// * https://github1s.com/emilybache/Racing-Car-Katas: LeaderBoard or Alarm
+// * https://github.com/emilybache/Theatrical-Players-Refactoring-Kata
+
+=== Extract info
+
+For of all, we will create a document extracting information from the code.
+The first kind of data we think of is static information like classes, method description.
+We can retrieve a lot of them by parsing the code but it's not where we're going to focus on.
+
+We'll try to retrieve information by executing code.
+For that, we need a program to use some code and retrieve how it's behave.
+To do that, we'll use our test framework where each test will be a program that write a part of documentation. 
+
+* Create a test that create a file and write some information into it.
+
+* Extract the list of items to document what you can find.
+
+* Write this file from a test.
+
+* Add the first value of the item.
+
+== Approvals
+
+Now, you have a file which has captured the behavior of the application at a given time.
+If you run the test again, the result should be the same.
+Otherwise, that mean there is a regression between the last execution.
+
+So, at the end of our test, we can compare the last generated file with the new version we produce. 
+If they are identical, that's fine.
+If it's not, we just have to make our test fail.
+
+This is exaclty what https://approvaltests.com/[Approvals] does.
+You can add this library to your project to check the regression.
+If you prefere, you can do it by yourself or you can just check that generated file hasn't change using git tool. 
+
+Be notified when the behavior change (regression or evolution).
+
+* Git command
+* Script bash
+* Approvals
+* Reading the file
+
+A simple algorithm that can be integrated in a test framework could be the following one:
+----
+if approved_file not exists
+  or approved_content != received_content:
+  create received_file with received_content 
+  fail
+----
+
+=== Improve documentation
+
+Document/Test the behavior over the iterations.
+
+Think about the kind of description you want to see.
+
+* Add specification and specific description
+* Doc by item, by attribut
+* Graph by item, all the items
+* Make one file per document and organize them
+
+* Possible path
+** Display a graph to show the result
+** Show values until max
+** Document Norwegian blue
+** Create a test for african parrot
+** Use an iteration over enum values
+** Display all parrot types
+** Create a formatter for a table line
+** Display in a table
+** Display enum name
+** Generate a first document
+** Create a test file for generating doc
+
+
+=== From scratch
+
+After experiment the approach on legacy code, we will try it for developping a new code.
+What we want to develop anoother Parrot. 
+
+* put one item in a place
+* put several items from a place (what happen if there is no place ?) 
+* continue on next line other direction if not enough place
+* auto place
+** Search first place where it could be stored
+** Prefere on the same line.
+** Prefere near other same items.
+** The goal is to form the biggest group of the same item not necessary on the same line.
+
+
+//  ! Do not make another javadoc
+//   Static extraction (when code change, doc is updated) : option list, class list inherit from a specific class(connector, ...), docs list, conf files or scripts, glossary.
+// 
+//   Dynamic extraction executing code (default values, error messages,...) 
+//   Formatting the text
+// 
+// 
+// * Generate from a test
+//   Approval (or git) 
+// * let's play
+//   Retro doc
+//   New development (not tdd => visually check  the result as debugging)
+// 
+// Develop focusing on visualize the result
+

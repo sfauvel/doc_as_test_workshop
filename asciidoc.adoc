@@ -1,0 +1,68 @@
+== Asciidoc
+
+We use the `asciidoc` format to write our documentation.
+
+This section helps you to familiarize with this format. We explain some useful syntax in our context.
+
+If you want to go further, you can see: 
+https://docs.asciidoctor.org/asciidoctor/latest/[]
+
+https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/[]
+
+
+You can write in *bold* or _italic_.
+
+---
+
+* Create
+* a
+* checklist
+
+---
+
+[%autowidth]
+|====
+| Table | Header
+
+| Line 1 | Value
+| Line 2 | Value
+|====
+
+---
+
+include::text.adoc[]
+
+---
+
+image:asciidoctor-logo.svg[width=100px]
+
+---
+
+[source, java]
+----
+/**
+* Code avec highlighter.
+*/
+public class OperationsTest {
+    @Test
+    public void calculate_the_square_of_a_number() {
+        assertEquals(42, Math.max(42, 35));
+    }
+}
+----
+
+___
+
+++++
+<svg>
+    <rect x="40" y="0" width="40" height="40" fill="red"></rect>
+    <circle cx="80" cy="50" r="20" fill="green"></circle>
+    <polyline style="stroke:blue;fill:none;stroke-width:3" points="
+        20,40
+        80,50
+        100,35
+        120,45
+    "/>
+    <text x="45" y="15">Text</text>
+</svg>
+++++
