@@ -1,5 +1,5 @@
 = Doc as Test workshop
-:toc:
+:toc: left
 
 This workshop aims to experiment the 'Doc as Test' approach.
 You can find some information and resources about the concept at https://sfauvel.github.io/documentationtesting/[DocAsTest] site. 
@@ -57,6 +57,14 @@ Choose the default permissions granted to the GITHUB_TOKEN when running workflow
 * [x] Workflows have read and write permissions in the repository for all scopes.
 * [ ] Workflows have read permissions in the repository for the contents and packages scopes only.
 ====
+
+Settings
+Pages
+Branch
+gh-pages
+
+Pages are visible at https://[github account].github.io/[repository]/
+Example: https://sfauvel.github.io/doc_as_test_workshop/
 
 == Living documentation
 
