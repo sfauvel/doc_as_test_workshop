@@ -49,6 +49,14 @@ Create an HTML from asciidoc
 ** Create a github pages
 ** Add a github action
 
+====
+Workflow permissions
+
+Choose the default permissions granted to the GITHUB_TOKEN when running workflows in this repository. You can specify more granular permissions in the workflow using YAML. Learn more.
+
+* [x] Workflows have read and write permissions in the repository for all scopes.
+* [ ] Workflows have read permissions in the repository for the contents and packages scopes only.
+====
 
 == Living documentation
 
