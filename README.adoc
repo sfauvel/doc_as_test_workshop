@@ -1,14 +1,14 @@
 
-ifndef::html-format[]
+ifndef::htmlformat[]
 :page_extension: adoc
 endif::[]
 
-ifdef::html-format[]
+ifdef::htmlformat[]
 :page_extension: html
 endif::[]
 
 
-ifdef::html-format[]
+ifdef::htmlformat[]
 :toc: left
 endif::[]
 

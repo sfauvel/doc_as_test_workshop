@@ -21,7 +21,8 @@ jobs:
       uses: manoelcampos/asciidoctor-ghpages-action@v2
       with:
         pdf_build: true
-        asciidoctor_params: --attribute=nofooter --attribute=html-format
+        asciidoctor_params: --attribute=htmlformat
+        #asciidoctor_params: --attribute=nofooter --attribute=htmlformat
         # adoc_file_ext: .ascii # default is .adoc
         # source_dir: docs/ # default is .
         # slides_build: true
