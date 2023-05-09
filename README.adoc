@@ -1,18 +1,21 @@
 = Doc as Test workshop
-:toc: left
+//:toc: left
 
 This workshop aims to experiment the 'Doc as Test' approach.
 You can find some information and resources about the concept at https://sfauvel.github.io/documentationtesting/[DocAsTest] site. 
 
 
-In short, each test generates a paragraph describings a behaviour. 
+In short, each test method generates a paragraph describings a behaviour. 
 The aggregation of all those paragraphs consitute a complete documentation of the product.
 As long as the generated text is the same, the test is passing. 
 Otherwise, something has change and must be verify.
 
 == Doc as code
 
-=== Viewer  
+We propose to use https://docs.asciidoctor.org/asciidoc/latest/[Asciidoc] to write documents. 
+It's a markup language that makes it easy to write documents.
+
+=== Viewer
 
 Install an `asciidoc` viewer. 
 The best is to install one in your IDE. 
@@ -39,15 +42,13 @@ Push this file in a github repo
 
 === Publish
 
-Create an HTML from asciidoc
+IT's not essential to publish an HTML documentation for this workshop.
+We can be satisfied by what we see with `Asciidoc` viewer. 
+But the possibility of publishing documentation accessible to all is a central aim of the approach.
 
-* Download asciidoctorJ
-* Use Dockerfile
-* Use a pom.xml
-* With Intellij/VSCode
-* Using Github
-** Create a github pages
-** Add a github action
+We will configure a github repository to publish our result.
+You also can look at the page link:asciidoc_to_html.adoc[Asciidoc to HTML] which describes alternative ways of doing things.
+
 
 ====
 Workflow permissions
@@ -58,13 +59,31 @@ Choose the default permissions granted to the GITHUB_TOKEN when running workflow
 * [ ] Workflows have read permissions in the repository for the contents and packages scopes only.
 ====
 
-Settings
-Pages
-Branch
-gh-pages
 
-Pages are visible at https://[github account].github.io/[repository]/
+** Add a github action
+
+Add in your repository a github action creating the file `.github/workflows/publish_site.yaml`.
+This file should contain the following code.
+It creates from asciidoc files the HTML files and commit them in a `gh-pages` branch.
+
+.Publish action
+[%collapsible]
+====
+[source,yaml]
+----
+include::.github/workflows/publish_site.yaml[]
+----
+====
+
+
+Once the branch is created, we can publish. 
+For that, got to: `Settings > Pages > Branch`
+and select `gh-pages`.
+
+Your page is then visible at https://[github account].github.io/[repository]/
 Example: https://sfauvel.github.io/doc_as_test_workshop/
+
+It will be updated on each commit on your `main` branch. 
 
 == Living documentation
 
@@ -97,13 +116,13 @@ The first thing you have to do is to clone the repository and run tests.
 
 === Extract info
 
-For of all, we will create a document extracting information from the code.
-The first kind of data we think of is static information like classes, method description.
+We will create a document extracting information from the code.
+The first kind of data we think of is static information like classes, method descriptions.
 We can retrieve a lot of them by parsing the code but it's not where we're going to focus on.
 
 We'll try to retrieve information by executing code.
-For that, we need a program to use some code and retrieve how it's behave.
-To do that, we'll use our test framework where each test will be a program that write a part of documentation. 
+For that, we need a program that that executes the code to retrieve behaviour.
+To do that, we'll use our usual testing framework where each test will be a program that write a part of documentation. 
 
 * Create a test that create a file and write some information into it.
 
@@ -117,7 +136,7 @@ To do that, we'll use our test framework where each test will be a program that 
 
 Now, you have a file which has captured the behavior of the application at a given time.
 If you run the test again, the result should be the same.
-Otherwise, that mean there is a regression between the last execution.
+Otherwise, that mean there is a regression since the last execution.
 
 So, at the end of our test, we can compare the last generated file with the new version we produce. 
 If they are identical, that's fine.
