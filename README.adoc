@@ -1,14 +1,14 @@
 
-ifndef::env-github[]
+ifndef::html-format[]
 :page_extension: adoc
 endif::[]
 
-ifdef::env-github[]
+ifdef::html-format[]
 :page_extension: html
 endif::[]
 
 
-ifdef::env-github[]
+ifdef::html-format[]
 :toc: left
 endif::[]
 
