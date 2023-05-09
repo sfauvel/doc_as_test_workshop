@@ -1,16 +1,16 @@
 
 ifndef::env-github[]
 :page_extension: adoc
-endif::env-github[]
+endif::[]
 
 ifdef::env-github[]
 :page_extension: html
-endif::env-github[]
+endif::[]
 
 
 ifdef::env-github[]
 :toc: left
-endif::env-github[]
+endif::[]
 
 = Doc as Test workshop
 
