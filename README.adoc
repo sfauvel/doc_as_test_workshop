@@ -1,5 +1,18 @@
+
+ifndef::env-github[]
+:page_extension: adoc
+endif::env-github[]
+
+ifdef::env-github[]
+:page_extension: html
+endif::env-github[]
+
+
+ifdef::env-github[]
+:toc: left
+endif::env-github[]
+
 = Doc as Test workshop
-//:toc: left
 
 This workshop aims to experiment the 'Doc as Test' approach.
 You can find some information and resources about the concept at https://sfauvel.github.io/documentationtesting/[DocAsTest] site. 
@@ -36,7 +49,7 @@ Create a file named with extension .adoc
 Write a ascidoc file describing what your are doing.
 Try to format it to be pleasant to read. 
 
-You can found some basic syntaxe here: link:asciidoc.adoc[]
+You can found some basic syntaxe here: link:asciidoc.{page_extension}[]
 
 Push this file in a github repo
 
