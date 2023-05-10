@@ -18,10 +18,27 @@ This workshop aims to experiment the 'Doc as Test' approach.
 You can find some information and resources about the concept at https://sfauvel.github.io/documentationtesting/[DocAsTest] site. 
 
 
-In short, each test method generates a paragraph describings a behaviour. 
-The aggregation of all those paragraphs consitute a complete documentation of the product.
+In short, each test method generates a paragraph describing a behavior 
+The aggregation of all those paragraphs makes a complete documentation of the product.
 As long as the generated text is the same, the test is passing. 
 Otherwise, something has change and must be verify.
+
+== Content
+
+. Introduction
+. Prepare tooling
+.. Viewer
+.. Asciidoc syntax
+.. Generate web site
+. Living documentation
+. Approvals on existing code
+. New development drive by documentation
+. Feedback
+
+
+Your are free to use the language and the project you want.
+The constraints are that you need to be able to run tests on your project and you must be able to write a file from your test.
+It also could be interesting (but not necessarily) to be able to but it in a public github repository to publish the final documentation.
 
 == Doc as code
 
@@ -46,41 +63,43 @@ The best is to install one in your IDE.
 
 Create a file named with extension .adoc
 
-Write a ascidoc file describing what your are doing.
-Try to format it to be pleasant to read. 
+Write a asciidoc file describing what your are doing.
+Try to format it to be pleasant to read (title, bold, link, table, ...). 
 
-You can found some basic syntaxe here: link:asciidoc.{page_extension}[]
+You can found some basic syntaxes examples here: link:asciidoc.{page_extension}[]
 
 Push this file in a github repo
 
 === Publish
 
-IT's not essential to publish an HTML documentation for this workshop.
+It's not essential to publish an HTML documentation for this workshop.
 We can be satisfied by what we see with `Asciidoc` viewer. 
 But the possibility of publishing documentation accessible to all is a central aim of the approach.
 
 We will configure a github repository to publish our result.
-You also can look at the page link:asciidoc_to_html.adoc[Asciidoc to HTML] which describes alternative ways of doing things.
+You also can look at the page link:asciidoc_to_html.{page_extension}[Asciidoc to HTML] which describes alternative ways of doing things.
 
+
+We will using the https://github.com/manoelcampos/asciidoctor-ghpages-action[asciidoctor-ghpages-action] github action.
+
+=== Configure Github
+
+This action creates a branch so, it needs to have write access on repository.
 
 ====
-Workflow permissions
-
-Choose the default permissions granted to the GITHUB_TOKEN when running workflows in this repository. You can specify more granular permissions in the workflow using YAML. Learn more.
+Go to `Settings > Actions > General > Workflow permissions` and allow workflows to write into the repository.
 
 * [x] Workflows have read and write permissions in the repository for all scopes.
 * [ ] Workflows have read permissions in the repository for the contents and packages scopes only.
 ====
 
-
-** Add a github action
+=== Create the action
 
 Add in your repository a github action creating the file `.github/workflows/publish_site.yaml`.
 This file should contain the following code.
 It creates from asciidoc files the HTML files and commit them in a `gh-pages` branch.
 
 .Publish action
-[%collapsible]
 ====
 [source,yaml]
 ----
@@ -88,22 +107,25 @@ include::.github/workflows/publish_site.yaml[]
 ----
 ====
 
+=== Publish the site
 
 Once the branch is created, we can publish. 
 For that, got to: `Settings > Pages > Branch`
 and select `gh-pages`.
 
-Your page is then visible at https://[github account].github.io/[repository]/
+Your page is then visible at `https://[github account].github.io/[repository]/`.
+
 Example: https://sfauvel.github.io/doc_as_test_workshop/
 
 It will be updated on each commit on your `main` branch. 
+It usually takes 1mn before you can see the result in your public site. 
 
 == Living documentation
 
 For this workshop, we will use the https://github.com/emilybache/Parrot-Refactoring-Kata[Parrot refactoring kata] from the https://github.com/emilybache[Emily Bache] repository.
 We will not using it to work on refactoring but to experiment the `Doc as test` approach.
 
-This kata is available in many languages so you can chose your favourite one.
+This kata is available in many languages so you can chose your favorite one.
 Nevertheless, we can provide an advanced tooling with Java.
 We also have some support in Python, FSharp, Kotlin. 
 
@@ -134,7 +156,7 @@ The first kind of data we think of is static information like classes, method de
 We can retrieve a lot of them by parsing the code but it's not where we're going to focus on.
 
 We'll try to retrieve information by executing code.
-For that, we need a program that that executes the code to retrieve behaviour.
+For that, we need a program that that executes the code to retrieve behavior.
 To do that, we'll use our usual testing framework where each test will be a program that write a part of documentation. 
 
 * Create a test that create a file and write some information into it.
@@ -155,9 +177,9 @@ So, at the end of our test, we can compare the last generated file with the new 
 If they are identical, that's fine.
 If it's not, we just have to make our test fail.
 
-This is exaclty what https://approvaltests.com/[Approvals] does.
+This is exactly what https://approvaltests.com/[Approvals] does.
 You can add this library to your project to check the regression.
-If you prefere, you can do it by yourself or you can just check that generated file hasn't change using git tool. 
+If you prefer, you can do it by yourself or you can just check that generated file hasn't change using git tool. 
 
 Be notified when the behavior change (regression or evolution).
 
@@ -181,7 +203,7 @@ Document/Test the behavior over the iterations.
 Think about the kind of description you want to see.
 
 * Add specification and specific description
-* Doc by item, by attribut
+* Doc by item, by attribute
 * Graph by item, all the items
 * Make one file per document and organize them
 
@@ -201,16 +223,16 @@ Think about the kind of description you want to see.
 
 === From scratch
 
-After experiment the approach on legacy code, we will try it for developping a new code.
-What we want to develop anoother Parrot. 
+After experiment the approach on legacy code, we will try it for developing a new code.
+What we want to develop another Parrot. 
 
 * put one item in a place
 * put several items from a place (what happen if there is no place ?) 
 * continue on next line other direction if not enough place
 * auto place
 ** Search first place where it could be stored
-** Prefere on the same line.
-** Prefere near other same items.
+** Prefer on the same line.
+** Prefer near other same items.
 ** The goal is to form the biggest group of the same item not necessary on the same line.
 
 
