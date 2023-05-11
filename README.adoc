@@ -121,13 +121,13 @@ We'll try to retrieve information by executing code.
 For that, we need a program that that executes the code to retrieve behavior.
 To do that, we'll use our usual testing framework where each test will be a program that write a part of documentation. 
 
-* Create a test that create a file and write some information into it.
+* Use a test from which you will create a file containing some information.
 
-* Extract the list of items to document what you can find.
+* Write the list of Parrot to this file. 
 
-* Write this file from a test.
+* Add the speed of each Parrot build with default values.
 
-* Add the first value of the item.
+* Improve the text to produce a document that allows the behavior described to be understood.
 
 == Approvals
 
