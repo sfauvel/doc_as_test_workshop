@@ -1,13 +1,79 @@
 = Asciidoc to HTML
 
-== Asciidoctorj
 
 == Docker
 
+https://hub.docker.com/r/asciidoctor/docker-asciidoctor/[]
+
+.How to use it
+----
+docker run -it -v <your directory>:/documents/ asciidoctor/docker-asciidoctor
+asciidoctor sample.adoc
+----
+
+== Asciidoctorj
+
+https://github.com/asciidoctor/asciidoctorj[]
+
+.How to use it
+----
+Linux: asciidoctorj-2.5.7/bin/asciidoctorj README.adoc
+Windows: asciidoctorj-2.5.7\bin\asciidoctorj.bat README.adoc
+----
+
 == Maven
+
+
 
 == IDE
 
-Intellij/VSCode
+* Intellij
+** Got to the asciidoc file
+** Click on `HTML`
+* VSCode
+** Open command palette (CTRL + SHIFT + 'P') and select `Asciidoc: Save HTML Document` (CTRL + ALT + 'S')
 
+// tag::github-publish[]
 == Github
+
+We will using the https://github.com/manoelcampos/asciidoctor-ghpages-action[asciidoctor-ghpages-action] github action.
+
+=== Configure Github
+
+This action creates a branch so, it needs to have write access on repository.
+
+====
+Go to `Settings > Actions > General > Workflow permissions` and allow workflows to write into the repository.
+
+* [x] Workflows have read and write permissions in the repository for all scopes.
+* [ ] Workflows have read permissions in the repository for the contents and packages scopes only.
+====
+
+=== Create the action
+
+Add in your repository a github action creating the file `.github/workflows/publish_site.yaml`.
+This file should contain the following code.
+It creates from asciidoc files the HTML files and commit them in a `gh-pages` branch.
+
+.Publish action
+====
+[source,yaml]
+----
+include::.github/workflows/publish_site.yaml[]
+----
+====
+
+=== Publish the site
+
+Once the branch is created, we can publish. 
+For that, got to: `Settings > Pages > Branch`
+and select `gh-pages`.
+
+Your page is then visible at `https://[github account].github.io/[repository]/`.
+
+Example: https://sfauvel.github.io/doc_as_test_workshop/
+
+It will be updated on each commit on your `main` branch. 
+It usually takes 1mn before you can see the result in your public site. 
+
+// end::github-publish[]

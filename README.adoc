@@ -37,6 +37,7 @@ Otherwise, something has change and must be verify.
 
 
 Your are free to use the language and the project you want.
+The most important thing is to be comfortable with your development environment.
 The constraints are that you need to be able to run tests on your project and you must be able to write a file from your test.
 It also could be interesting (but not necessarily) to be able to but it in a public github repository to publish the final documentation.
 
@@ -79,46 +80,7 @@ But the possibility of publishing documentation accessible to all is a central a
 We will configure a github repository to publish our result.
 You also can look at the page link:asciidoc_to_html.{page_extension}[Asciidoc to HTML] which describes alternative ways of doing things.
 
-
-We will using the https://github.com/manoelcampos/asciidoctor-ghpages-action[asciidoctor-ghpages-action] github action.
-
-=== Configure Github
-
-This action creates a branch so, it needs to have write access on repository.
-
-====
-Go to `Settings > Actions > General > Workflow permissions` and allow workflows to write into the repository.
-
-* [x] Workflows have read and write permissions in the repository for all scopes.
-* [ ] Workflows have read permissions in the repository for the contents and packages scopes only.
-====
-
-=== Create the action
-
-Add in your repository a github action creating the file `.github/workflows/publish_site.yaml`.
-This file should contain the following code.
-It creates from asciidoc files the HTML files and commit them in a `gh-pages` branch.
-
-.Publish action
-====
-[source,yaml]
-----
-include::.github/workflows/publish_site.yaml[]
-----
-====
-
-=== Publish the site
-
-Once the branch is created, we can publish. 
-For that, got to: `Settings > Pages > Branch`
-and select `gh-pages`.
-
-Your page is then visible at `https://[github account].github.io/[repository]/`.
-
-Example: https://sfauvel.github.io/doc_as_test_workshop/
-
-It will be updated on each commit on your `main` branch. 
-It usually takes 1mn before you can see the result in your public site. 
+include::asciidoc_to_html.adoc[leveloffset=+1,tags=github-publish]
 
 == Living documentation
 
