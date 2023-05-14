@@ -33,13 +33,13 @@ Windows: asciidoctorj-2.5.7\bin\asciidoctorj.bat README.adoc
 * VSCode
 ** Open command palette (CTRL + SHIFT + 'P') and select `Asciidoc: Save HTML Document` (CTRL + ALT + 'S')
 
-// tag::github-publish[]
 == Github
 
 We will using the https://github.com/manoelcampos/asciidoctor-ghpages-action[asciidoctor-ghpages-action] github action.
 
 === Configure Github
 
+// tag::github-configure[]
 This action creates a branch so, it needs to have write access on repository.
 
 ====
@@ -48,9 +48,11 @@ Go to `Settings > Actions > General > Workflow permissions` and allow workflows 
 * [x] Workflows have read and write permissions in the repository for all scopes.
 * [ ] Workflows have read permissions in the repository for the contents and packages scopes only.
 ====
+// end::github-configure[]
 
 === Create the action
 
+// tag::github-create-action[]
 Add in your repository a github action creating the file `.github/workflows/publish_site.yaml`.
 This file should contain the following code.
 It creates from asciidoc files the HTML files and commit them in a `gh-pages` branch.
@@ -62,9 +64,11 @@ It creates from asciidoc files the HTML files and commit them in a `gh-pages` br
 include::.github/workflows/publish_site.yaml[]
 ----
 ====
+// end::github-create-action[]
 
 === Publish the site
 
+// tag::github-publish[]
 Once the branch is created, we can publish. 
 For that, got to: `Settings > Pages > Branch`
 and select `gh-pages`.
@@ -75,5 +79,4 @@ Example: https://sfauvel.github.io/doc_as_test_workshop/
 
 It will be updated on each commit on your `main` branch. 
 It usually takes 1mn before you can see the result in your public site. 
-
 // end::github-publish[]

@@ -48,9 +48,12 @@ It's a markup language that makes it easy to write documents.
 
 === Viewer
 
-Install an `asciidoc` viewer. 
+Install an `asciidoc` viewer to view the rendering of an asciidoc file.
 The best is to install one in your IDE. 
 
+[%collapsible]
+.Viewer list
+====
 * Intellij/PyCharm: plugin
 ** https://plugins.jetbrains.com/plugin/7391-asciidoc[AsciiDoc plugin]
 * VSCode
@@ -59,12 +62,14 @@ The best is to install one in your IDE.
 ** https://addons.mozilla.org/fr/firefox/addon/asciidoctorjs-live-preview/[Firefox - Asciidoctor.js Live Preview]
 ** https://chrome.google.com/webstore/detail/asciidoctorjs-live-previe/iaalpfgpbocpdfblpnhhgllgbdbchmia[Chrome - Asciidoctor.js Live Preview]
 ** https://microsoftedge.microsoft.com/addons/detail/asciidoctorjs-live-previ/pefkelkanablhjdekgdahplkccnbdggd[Edge - Asciidoctor.js Live Preview]
+====
 
 === First document
 
-Create a file named with extension .adoc
+Create a `workshop.adoc` file.
+The `adoc` extension is used for `asciidoc` files.
 
-Write a asciidoc file describing what your are doing.
+Write a asciidoc file describing the current workshop.
 Try to format it to be pleasant to read (title, bold, link, table, ...). 
 
 You can found some basic syntaxes examples here: link:asciidoc.{page_extension}[]
@@ -78,9 +83,15 @@ We can be satisfied by what we see with `Asciidoc` viewer.
 But the possibility of publishing documentation accessible to all is a central aim of the approach.
 
 We will configure a github repository to publish our result.
-You also can look at the page link:asciidoc_to_html.{page_extension}[Asciidoc to HTML] which describes alternative ways of doing things.
+You also can look at the page link:work/asciidoc_to_html.{page_extension}[Asciidoc to HTML] which describes alternative ways of doing things.
 
-include::asciidoc_to_html.adoc[leveloffset=+1,tags=github-publish]
+[%collapsible]
+.Publish site with Github action
+======
+include::pages/asciidoc_to_html.adoc[leveloffset=+1,tags=github-configure]
+include::pages/asciidoc_to_html.adoc[leveloffset=+1,tags=github-create-action]
+include::pages/asciidoc_to_html.adoc[leveloffset=+1,tags=github-publish]
+======
 
 == Living documentation
 
@@ -123,7 +134,7 @@ To do that, we'll use our usual testing framework where each test will be a prog
 
 * Use a test from which you will create a file containing some information.
 
-* Write the list of Parrot to this file. 
+* Write in a file the list of Parrot available. 
 
 * Add the speed of each Parrot build with default values.
 
