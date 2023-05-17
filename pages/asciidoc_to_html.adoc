@@ -61,7 +61,7 @@ It creates from asciidoc files the HTML files and commit them in a `gh-pages` br
 ====
 [source,yaml]
 ----
-include::.github/workflows/publish_site.yaml[]
+include::../.github/workflows/publish_site.yaml[]
 ----
 ====
 // end::github-create-action[]

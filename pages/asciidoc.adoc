@@ -34,6 +34,10 @@ include::text.adoc[]
 
 ---
 
+Include special characters: &#x21E6; &#x21E7; &#x21E8; &#x21E9; 
+
+---
+
 image:asciidoctor-logo.svg[width=100px]
 
 ---
@@ -54,15 +58,18 @@ public class OperationsTest {
 ___
 
 ++++
-<svg>
-    <rect x="40" y="0" width="40" height="40" fill="red"></rect>
-    <circle cx="80" cy="50" r="20" fill="green"></circle>
+<svg width=300 height=100  style="background-color:#b8d6ea">
+    <rect x="40" y="10" width="40" height="40" fill="green"></rect>
+    
+    <text x="45" y="25">Text</text>
+
+    <circle cx="80" cy="60" r="20" fill="red"></circle>
+
     <polyline style="stroke:blue;fill:none;stroke-width:3" points="
-        20,40
-        80,50
-        100,35
-        120,45
+        20,50
+        80,60
+        100,45
+        120,55
     "/>
-    <text x="45" y="15">Text</text>
 </svg>
 ++++

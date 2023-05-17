@@ -43,6 +43,10 @@ It also could be interesting (but not necessarily) to be able to but it in a pub
 
 == Doc as code
 
+====
+We start, by some basics about `Doc as code`: write a doc with a markup language, store it with source control, add tools to visualize it. 
+====
+
 We propose to use https://docs.asciidoctor.org/asciidoc/latest/[Asciidoc] to write documents. 
 It's a markup language that makes it easy to write documents.
 
@@ -72,7 +76,7 @@ The `adoc` extension is used for `asciidoc` files.
 Write a asciidoc file describing the current workshop.
 Try to format it to be pleasant to read (title, bold, link, table, ...). 
 
-You can found some basic syntaxes examples here: link:asciidoc.{page_extension}[]
+You can found some basic syntaxes examples here: link:pages/asciidoc.{page_extension}[]
 
 Push this file in a github repo
 
@@ -94,6 +98,10 @@ include::pages/asciidoc_to_html.adoc[leveloffset=+1,tags=github-publish]
 ======
 
 == Living documentation
+
+====
+After writing a static document, we will generate one to extract some information from the code.
+====
 
 For this workshop, we will use the https://github.com/emilybache/Parrot-Refactoring-Kata[Parrot refactoring kata] from the https://github.com/emilybache[Emily Bache] repository.
 We will not using it to work on refactoring but to experiment the `Doc as test` approach.
@@ -142,6 +150,11 @@ To do that, we'll use our usual testing framework where each test will be a prog
 
 == Approvals
 
+====
+Now, we have a documentation synchronized with the actual code behavior. 
+The last step is to detect regression using `Golden Master` approach. 
+====
+
 Now, you have a file which has captured the behavior of the application at a given time.
 If you run the test again, the result should be the same.
 Otherwise, that mean there is a regression since the last execution.
@@ -162,52 +175,81 @@ Be notified when the behavior change (regression or evolution).
 * Reading the file
 
 A simple algorithm that can be integrated in a test framework could be the following one:
+[source, python]
 ----
-if approved_file not exists
-  or approved_content != received_content:
+remove received_file if exists
+
+if approved_file not exists or approved_content != received_content:
   create received_file with received_content 
   fail
 ----
 
 === Improve documentation
 
-Document/Test the behavior over the iterations.
+We will create another chapter to see what happen to a parrot build with different parameters.
 
-Think about the kind of description you want to see.
+We want to understand what the impact of the voltage on Norwegian Blue speed.  
 
-* Add specification and specific description
-* Doc by item, by attribute
-* Graph by item, all the items
-* Make one file per document and organize them
+Think first about the kind of description you want to see.
+What values you need to understand what happen ? 
+Which input and output values ? 
+The actions executed ?
+Then try to present it in a way that the behavior can quickly understood. 
 
-* Possible path
-** Display a graph to show the result
-** Show values until max
-** Document Norwegian blue
-** Create a test for african parrot
-** Use an iteration over enum values
-** Display all parrot types
-** Create a formatter for a table line
-** Display in a table
-** Display enum name
-** Generate a first document
-** Create a test file for generating doc
+
+
+// * Add specification and specific description
+// * Doc by item, by attribute
+// * Graph by item, all the items
+// * Make one file per document and organize them
+// 
+// * Possible path
+// ** Display a graph to show the result
+// ** Show values until max
+// ** Document Norwegian blue
+// ** Create a test for african parrot
+// ** Use an iteration over enum values
+// ** Display all parrot types
+// ** Create a formatter for a table line
+// ** Display in a table
+// ** Display enum name
+// ** Generate a first document
+// ** Create a test file for generating doc
 
 
 === From scratch
 
-After experiment the approach on legacy code, we will try it for developing a new code.
-What we want to develop another Parrot. 
+After experiment the approach on legacy code, we will try it for developing a new feature.
 
-* put one item in a place
-* put several items from a place (what happen if there is no place ?) 
-* continue on next line other direction if not enough place
-* auto place
-** Search first place where it could be stored
-** Prefer on the same line.
-** Prefer near other same items.
-** The goal is to form the biggest group of the same item not necessary on the same line.
+We want to create a `road` along which the `parrot` can travel. 
+This`road` will contain the `parrot` position and `power source` in some places.
+A `power source` has a float value between 0 to 2.
 
+Start by create a formatter that display the state of the system:
+
+- The road.
+- Position of the `parrot` and its speed.
+- Items along the `road`.
+
+We can call a method to move forward the `parrot`.
+After 5 steps, its voltage decrease by 0.1.
+When a `parrot` passes over a `power source`, it takes all its energy. 
+
+Don't try to make something to sophisticated. 
+We want to work on the representation more than the code design.
+It doesn't matter if the code is far from good practice, that's the subject to experiment with.
+
+// What we want to develop another Parrot. 
+// 
+// * put one item in a place
+// * put several items from a place (what happen if there is no place ?) 
+// * continue on next line other direction if not enough place
+// * auto place
+// ** Search first place where it could be stored
+// ** Prefer on the same line.
+// ** Prefer near other same items.
+// ** The goal is to form the biggest group of the same item not necessary on the same line.
+// 
 
 //  ! Do not make another javadoc
 //   Static extraction (when code change, doc is updated) : option list, class list inherit from a specific class(connector, ...), docs list, conf files or scripts, glossary.

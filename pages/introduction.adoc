@@ -1,0 +1,9 @@
+= Introduction
+
+// Show what it can done
+
+// https://youtu.be/AQDILnknTJ0?t=771
+
+// Start from fizzbuzz document
+// Show how we can render it with asciidoc
+// Show how we can validate it from test
