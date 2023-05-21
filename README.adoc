@@ -11,12 +11,12 @@ endif::[]
 ifdef::htmlformat[]
 :toc: left
 endif::[]
+:sectnums:
 
 = Doc as Test workshop
 
 This workshop aims to experiment the 'Doc as Test' approach.
 You can find some information and resources about the concept at https://sfauvel.github.io/documentationtesting/[DocAsTest] site. 
-
 
 In short, each test method generates a paragraph describing a behavior 
 The aggregation of all those paragraphs makes a complete documentation of the product.
@@ -36,15 +36,23 @@ Otherwise, something has change and must be verify.
 . Feedback
 
 
-Your are free to use the language and the project you want.
+In this workshop we will work on a project that we will test and document.
+You can use any of your projects for this workshop.
 The most important thing is to be comfortable with your development environment.
-The constraints are that you need to be able to run tests on your project and you must be able to write a file from your test.
-It also could be interesting (but not necessarily) to be able to but it in a public github repository to publish the final documentation.
+The constraints are that you need to be able to run tests on that project and you must be able to write a file to your disk from them.
+It also could be interesting (but not necessarily) to be able to but it in a public github repository to publish the final documentation and share it to other participants.
+
+If you don't have a project, you can clone this repository: link:https://github.com/sfauvel/Parrot-Refactoring-Kata[]. 
+This is a clone of the one on the https://github.com/emilybache[Emily Bache] repository.
+
+This kata is available in many languages so you will probably find your favorite one.
+We have configured the java project with an advanced tooling.
+The python and javascript projects are also configured to start quickly.
 
 == Doc as code
 
 ====
-We start, by some basics about `Doc as code`: write a doc with a markup language, store it with source control, add tools to visualize it. 
+In this section, we learn some basics about `Doc as code`: write a doc with a markup language, store it with source control, install tools to visualize it. 
 ====
 
 We propose to use https://docs.asciidoctor.org/asciidoc/latest/[Asciidoc] to write documents. 
@@ -73,8 +81,13 @@ The best is to install one in your IDE.
 Create a `workshop.adoc` file.
 The `adoc` extension is used for `asciidoc` files.
 
-Write a asciidoc file describing the current workshop.
-Try to format it to be pleasant to read (title, bold, link, table, ...). 
+Write an asciidoc file that describes the workshop you are in.
+Try to format it to be pleasant to read including:
+
+  * A title
+  * A little description about what you expect from this workshop highlighting key ideas.
+  * Links to useful resources.
+  * Table with information yu want to give about people in your group.
 
 You can found some basic syntaxes examples here: link:pages/asciidoc.{page_extension}[]
 
@@ -83,8 +96,8 @@ Push this file in a github repo
 === Publish
 
 It's not essential to publish an HTML documentation for this workshop.
-We can be satisfied by what we see with `Asciidoc` viewer. 
-But the possibility of publishing documentation accessible to all is a central aim of the approach.
+What we see in the `Asciidoc` viewer may be enough. 
+But it is interesting to note the feeling of having an up-to-date support that is accessible by all continuously.
 
 We will configure a github repository to publish our result.
 You also can look at the page link:work/asciidoc_to_html.{page_extension}[Asciidoc to HTML] which describes alternative ways of doing things.
@@ -103,14 +116,11 @@ include::pages/asciidoc_to_html.adoc[leveloffset=+1,tags=github-publish]
 After writing a static document, we will generate one to extract some information from the code.
 ====
 
-For this workshop, we will use the https://github.com/emilybache/Parrot-Refactoring-Kata[Parrot refactoring kata] from the https://github.com/emilybache[Emily Bache] repository.
-We will not using it to work on refactoring but to experiment the `Doc as test` approach.
+For this workshop, you can use your own project or the https://github.com/sfauvel/Parrot-Refactoring-Kata[Parrot refactoring kata].
+In the following, to guide you, we will suggest a path to follow with this kata.
+If you don't use it, adapt the steps to your context and above all be free to explore other paths.
 
-This kata is available in many languages so you can chose your favorite one.
-Nevertheless, we can provide an advanced tooling with Java.
-We also have some support in Python, FSharp, Kotlin. 
-
-The first thing you have to do is to clone the repository and run tests.
+The first thing to do is make sure you can run the tests.
 
 // For this workshop, we will use the famous link:https://github.com/emilybache/GildedRose-Refactoring-Kata[GildedRose-Refactoring-Kata]. 
 // It's an exercise to practice at handling legacy code. 
@@ -132,13 +142,9 @@ The first thing you have to do is to clone the repository and run tests.
 
 === Extract info
 
-We will create a document extracting information from the code.
-The first kind of data we think of is static information like classes, method descriptions.
-We can retrieve a lot of them by parsing the code but it's not where we're going to focus on.
+Living documentation is documentation generated from code which is guaranteed to be up to date.
+Instead of creating this documentation from a program, we are going to use our tests like so many programs to generate the paragraphs of our documentation.
 
-We'll try to retrieve information by executing code.
-For that, we need a program that that executes the code to retrieve behavior.
-To do that, we'll use our usual testing framework where each test will be a program that write a part of documentation. 
 
 * Use a test from which you will create a file containing some information.
 
@@ -219,24 +225,29 @@ Then try to present it in a way that the behavior can quickly understood.
 
 === From scratch
 
+====
 After experiment the approach on legacy code, we will try it for developing a new feature.
+====
 
-We want to create a `road` along which the `parrot` can travel. 
-This`road` will contain the `parrot` position and `power source` in some places.
-A `power source` has a float value between 0 to 2.
+When we developing the formatter, you don't need to approved the file until it looks like you want. 
+Just work on the received file and approve it when you are satisfied with the result.
 
-Start by create a formatter that display the state of the system:
+We want to create a `area` where the `parrot` can travel. 
+This`area` will contain the `parrot` position and `power source` in some places.
+A `power source` has a value between 0 to 2.
 
-- The road.
+Start by creating a formatter that display the state of the system:
+
+- The `area`.
 - Position of the `parrot` and its speed.
-- Items along the `road`.
+- Positions of items in `area`.
 
-We can call a method to move forward the `parrot`.
+We can call a method to move the `parrot`.
 After 5 steps, its voltage decrease by 0.1.
 When a `parrot` passes over a `power source`, it takes all its energy. 
 
-Don't try to make something to sophisticated. 
-We want to work on the representation more than the code design.
+Don't try to make something too sophisticated. 
+We want to work on the representation more than on the code design.
 It doesn't matter if the code is far from good practice, that's the subject to experiment with.
 
 // What we want to develop another Parrot. 

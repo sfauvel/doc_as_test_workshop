@@ -40,7 +40,7 @@ We will using the https://github.com/manoelcampos/asciidoctor-ghpages-action[asc
 === Configure Github
 
 // tag::github-configure[]
-This action creates a branch so, it needs to have write access on repository.
+The action we use creates a branch so, it needs to have write access on repository.
 
 ====
 Go to `Settings > Actions > General > Workflow permissions` and allow workflows to write into the repository.
@@ -53,9 +53,14 @@ Go to `Settings > Actions > General > Workflow permissions` and allow workflows 
 === Create the action
 
 // tag::github-create-action[]
-Add in your repository a github action creating the file `.github/workflows/publish_site.yaml`.
-This file should contain the following code.
-It creates from asciidoc files the HTML files and commit them in a `gh-pages` branch.
+We will add an action that creates HTML files from asciidoc files and commit them in a `gh-pages` branch.
+
+If you cloned the https://github.com/sfauvel/Parrot-Refactoring-Kata[] repository, 
+you find the `.github/workflows/publish_site.yaml` file that configure the action to publish your site.
+You just need to configure the path to your documentation.
+We suggest you put it in a "docs" directory in your test directory.
+
+If you use your own project, create this file with the following code and configure correctly the source dir :
 
 .Publish action
 ====
@@ -69,7 +74,7 @@ include::../.github/workflows/publish_site.yaml[]
 === Publish the site
 
 // tag::github-publish[]
-Once the branch is created, we can publish. 
+Once the branch is created, we can publish its content. 
 For that, got to: `Settings > Pages > Branch`
 and select `gh-pages`.
 
