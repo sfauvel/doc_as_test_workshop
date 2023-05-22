@@ -25,17 +25,6 @@ Otherwise, something has change and must be verify.
 
 == Content
 
-. Introduction
-. Prepare tooling
-.. Viewer
-.. Asciidoc syntax
-.. Generate web site
-. Living documentation
-. Approvals on existing code
-. New development drive by documentation
-. Feedback
-
-
 In this workshop we will work on a project that we will test and document.
 You can use any of your projects for this workshop.
 The most important thing is to be comfortable with your development environment.
