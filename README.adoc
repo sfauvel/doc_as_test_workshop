@@ -146,13 +146,12 @@ Living documentation is documentation generated from code which is guaranteed to
 Instead of creating this documentation from a program, we are going to use our tests like so many programs to generate the paragraphs of our documentation.
 
 
-* Use a test from which you will create a file containing some information.
+* Use a test to generate a file (with 'adoc' extension) containing information from the execution of the application code.
+If you use the Parrot kata with Java, Javascript or Python, there is already a test that generate a file. The test will failed but we will see that on the next chapter. 
 
-* Write in a file the list of Parrot available. 
+* Write in this file the list of parrots as well as their default speed.
 
-* Add the speed of each Parrot build with default values.
-
-* Improve the text to produce a document that allows the behavior described to be understood.
+* Improve the writing to have a pleasant document to read.
 
 == Approvals
 
@@ -169,25 +168,51 @@ So, at the end of our test, we can compare the last generated file with the new 
 If they are identical, that's fine.
 If it's not, we just have to make our test fail.
 
-This is exactly what https://approvaltests.com/[Approvals] does.
-You can add this library to your project to check the regression.
-If you prefer, you can do it by yourself or you can just check that generated file hasn't change using git tool. 
 
-Be notified when the behavior change (regression or evolution).
+We explain several ways to do it.
 
-* Git command
-* Script bash
-* Approvals
-* Reading the file
+=== Prepare tooling
+
+==== Approvals
+
+You can use the https://approvaltests.com/[Approvals] library which is made for that and which is available in several languages.
+
+In the kata Parrot, we have configured this library for the projects in Java, Javascript and Python.
+
+Otherwise, you need to configure it for your project. 
+You also need to add a specific configuration to generate files with `adoc` extension and not `txt` one.
+
+Files are generated with `received` in their names. 
+You have to rename them replacing `received` by `approved` to accept the content and make it the new reference.
+
+==== Use a script
+
+You can just generate your files in a specific folder of your git repository. 
+We provide a script `checkDocInFolder.sh` in `scripts` folder that check all files in the directory passes as parameter.
+If one file has changed, it's considered as a failing test.
+
+To approve a file and make it the new reference, you just have to add it in staged files with command `git add [filename]`.
+
+.Usage example
+----
+bash scripts/checkDocInFolder.sh  ./Python/docs
+----
+
+
+==== Create a method
+
+If you don't want to integrate https://approvaltests.com/[Approvals], 
+you can write a chemical method that does the job and is sufficient for our purposes.
 
 A simple algorithm that can be integrated in a test framework could be the following one:
 [source, python]
 ----
-remove received_file if exists
+verify(filename, received_content):
+  remove received_file_from(filename) if exists
 
-if approved_file not exists or approved_content != received_content:
-  create received_file with received_content 
-  fail
+  if approved_file_from(filename) not exists or approved_content != received_content:
+    create received_file_from(filename)  with received_content 
+    fail
 ----
 
 === Improve documentation
@@ -233,7 +258,7 @@ When we developing the formatter, you don't need to approved the file until it l
 Just work on the received file and approve it when you are satisfied with the result.
 
 We want to create a `area` where the `parrot` can travel. 
-This`area` will contain the `parrot` position and `power source` in some places.
+This `area` will contain the `parrot` position and `power sources` in some places.
 A `power source` has a value between 0 to 2.
 
 Start by creating a formatter that display the state of the system:
@@ -248,7 +273,16 @@ When a `parrot` passes over a `power source`, it takes all its energy.
 
 Don't try to make something too sophisticated. 
 We want to work on the representation more than on the code design.
-It doesn't matter if the code is far from good practice, that's the subject to experiment with.
+It doesn't matter if the code is far from good practice, you can always improve it later.
+
+Remember that we are not doing TDD. 
+Try to forget good testing practices and focus on what you need to produce to allow you to validate.
+
+You don't need to have the expected result (the approved file) before you are writing the code.
+You can just look at the result without validating it until the content corresponds to what you expect.
+
+A test method is responsible for generating a chapter, not testing a single case.
+
 
 // What we want to develop another Parrot. 
 // 
