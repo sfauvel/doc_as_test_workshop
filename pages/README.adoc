@@ -96,7 +96,7 @@ include::asciidoc_to_html.adoc[leveloffset=+1,tags=github-create-action]
 include::asciidoc_to_html.adoc[leveloffset=+1,tags=github-publish]
 ======
 
-You also can look at the page link:work/asciidoc_to_html.{page_extension}[Asciidoc to HTML] which describes alternative ways of doing things.
+You also can look at the page link:asciidoc_to_html.{page_extension}[Asciidoc to HTML] which describes alternative ways of doing things.
 
 == Living documentation
 
