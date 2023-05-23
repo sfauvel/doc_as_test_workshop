@@ -1,0 +1,305 @@
+
+ifndef::htmlformat[]
+:page_extension: adoc
+endif::[]
+
+ifdef::htmlformat[]
+:page_extension: html
+endif::[]
+
+
+ifdef::htmlformat[]
+:toc: left
+endif::[]
+:sectnums:
+
+= Doc as Test workshop
+
+This workshop aims to experiment the 'Doc as Test' approach.
+You can find some information and resources about the concept at https://sfauvel.github.io/documentationtesting/[DocAsTest] site. 
+
+In short, each test method generates a paragraph describing a behavior 
+The aggregation of all those paragraphs makes a complete documentation of the product.
+As long as the generated text is the same, the test is passing. 
+Otherwise, something has change and must be verify.
+
+== Content
+
+In this workshop we will work on a project that we will test and document.
+You can use any of your projects for this workshop.
+The most important thing is to be comfortable with your development environment.
+The constraints are that you need to be able to run tests on that project and you must be able to write a file to your disk from them.
+It also could be interesting (but not necessarily) to be able to push it in a public github repository to publish the final documentation and share it to other participants.
+
+If you don't have a project, you can clone this repository: link:https://github.com/sfauvel/Parrot-Refactoring-Kata[]. 
+This is a clone of the one on the https://github.com/emilybache[Emily Bache] repository.
+
+This kata is available in many languages so you will probably find your favorite one.
+We have configured the java project with an advanced tooling.
+The python and javascript projects are also configured to start quickly.
+
+== Doc as code
+
+====
+In this section, we learn some basics about `Doc as code`: write a doc with a markup language, store it with source control, install tools to visualize it. 
+====
+
+We propose to use https://docs.asciidoctor.org/asciidoc/latest/[Asciidoc] to write documents. 
+It's a markup language that makes it easy to write documents.
+
+=== Install a viewer
+
+Install an `asciidoc` viewer to view the rendering of the asciidoc files we are going to work on..
+Prefer an installation on your IDE to see the result during the development. 
+
+[%collapsible]
+.Viewer list
+====
+* Intellij/PyCharm: plugin
+** https://plugins.jetbrains.com/plugin/7391-asciidoc[AsciiDoc plugin]
+* VSCode
+** https://marketplace.visualstudio.com/items?itemName=asciidoctor.asciidoctor-vscode[AsciiDoc extension]
+* Web navigator
+** https://addons.mozilla.org/fr/firefox/addon/asciidoctorjs-live-preview/[Firefox - Asciidoctor.js Live Preview]
+** https://chrome.google.com/webstore/detail/asciidoctorjs-live-previe/iaalpfgpbocpdfblpnhhgllgbdbchmia[Chrome - Asciidoctor.js Live Preview]
+** https://microsoftedge.microsoft.com/addons/detail/asciidoctorjs-live-previ/pefkelkanablhjdekgdahplkccnbdggd[Edge - Asciidoctor.js Live Preview]
+====
+
+=== Create a document
+
+Create a `workshop.adoc` file.
+The `adoc` extension is used for `asciidoc` files.
+
+Write an asciidoc file that describes the workshop you are in.
+Try to format it to be pleasant to read including:
+
+  * A title
+  * A little description about what you expect from this workshop highlighting key ideas.
+  * Links to useful resources.
+  * Table with information you want to give about people in your group.
+
+You can found some basic link:asciidoc.{page_extension}[syntaxes examples here] or got to the link:https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/[syntax-quick-reference] page of the asciidoc site.
+
+=== Publish a site
+
+It's not essential to publish an HTML documentation for this workshop.
+What we see in the `Asciidoc` viewer may be enough. 
+But it is interesting to note the feeling of having an up-to-date support that is accessible by all continuously.
+
+We will configure a github repository to publish our result.
+
+[%collapsible]
+.How to publish site from Asciidoc with Github action
+======
+include::asciidoc_to_html.adoc[leveloffset=+1,tags=github-configure]
+include::asciidoc_to_html.adoc[leveloffset=+1,tags=github-create-action]
+include::asciidoc_to_html.adoc[leveloffset=+1,tags=github-publish]
+======
+
+You also can look at the page link:work/asciidoc_to_html.{page_extension}[Asciidoc to HTML] which describes alternative ways of doing things.
+
+== Living documentation
+
+====
+After writing a static document, we will generate one to extract some information from the code.
+====
+
+For this workshop, you can use your own project or the https://github.com/sfauvel/Parrot-Refactoring-Kata[Parrot refactoring kata].
+In the following, to guide you, we will suggest a path to follow with this kata.
+If you don't use it, adapt the steps to your context and above all be free to explore other paths.
+
+The first thing to do is make sure you can run the tests.
+
+// For this workshop, we will use the famous link:https://github.com/emilybache/GildedRose-Refactoring-Kata[GildedRose-Refactoring-Kata]. 
+// It's an exercise to practice at handling legacy code. 
+// That what we will done by creating a description of the behaviors and by creating a test harness in the same time.
+// We won't try to improve the code here.
+// This is not the point of this workshop but I encourage you to do it in a second time.
+// 
+// This kata is declined on a lot of language so you can chose the one you prefer.
+// 
+// other multilanguage kata: 
+// 
+// * https://github1s.com/emilybache/Refactoring-Kata-Lift-Pass-Pricing: WebServer, Mathematic calculation, json response
+// * https://github.com/emilybache/Parrot-Refactoring-Kata: simple calculation, default values
+// * https://github.com/emilybache/Theatrical-Players-Refactoring-Kata: Calculation but Nothing to extract
+// * https://github.com/emilybache/SupermarketReceipt-Refactoring-Kata: Algorithm
+// * https://github1s.com/emilybache/FantasyBattle-Refactoring-Kata/: Not a lot of algo. It may interesting to list added Items
+// * https://github1s.com/emilybache/Racing-Car-Katas: LeaderBoard or Alarm
+// * https://github.com/emilybache/Theatrical-Players-Refactoring-Kata
+
+=== Extract info
+
+Living documentation is documentation generated from code which is guaranteed to be up to date.
+Instead of creating this documentation from a program, we are going to use our tests like so many programs to generate the paragraphs of our documentation.
+
+
+* Use a test to generate a file (with 'adoc' extension) containing information from the execution of the application code.
+If you use the Parrot kata with Java, Javascript or Python, there is already a test that generate a file. The test will failed but we will see that on the next chapter. 
+
+* Write in this file the list of parrots as well as their default speed.
+
+* Improve the writing to have a pleasant document to read.
+
+== Approvals
+
+====
+Now, we have a documentation synchronized with the actual code behavior. 
+The last step is to detect regression using `Golden Master` approach. 
+====
+
+Now, you have a file which has captured the behavior of the application at a given time.
+If you run the test again, the result should be the same.
+Otherwise, that mean there is a regression since the last execution.
+
+So, at the end of our test, we can compare the last generated file with the new version we produce. 
+If they are identical, that's fine.
+If it's not, we just have to make our test fail.
+
+
+We explain several ways to do it.
+
+=== Prepare tooling
+
+==== Approvals
+
+You can use the https://approvaltests.com/[Approvals] library which is made for that and which is available in several languages.
+
+In the kata Parrot, we have configured this library for the projects in Java, Javascript and Python.
+
+Otherwise, you need to configure it for your project. 
+You also need to add a specific configuration to generate files with `adoc` extension and not `txt` one.
+
+Files are generated with `received` in their names. 
+You have to rename them replacing `received` by `approved` to accept the content and make it the new reference.
+
+==== Use a script
+
+You can just generate your files in a specific folder of your git repository. 
+We provide a script `checkDocInFolder.sh` in `scripts` folder that check all files in the directory passes as parameter.
+If one file has changed, it's considered as a failing test.
+
+To approve a file and make it the new reference, you just have to add it in staged files with command `git add [filename]`.
+
+.Usage example
+----
+bash scripts/checkDocInFolder.sh  ./Python/docs
+----
+
+
+==== Create a method
+
+If you don't want to integrate https://approvaltests.com/[Approvals], 
+you can write a simple method that does the job and is sufficient for our purposes.
+
+A simple algorithm that can be integrated in a test framework could be the following one:
+[source, python]
+----
+verify(filename, received_content):
+  remove received_file_from(filename) if exists
+
+  if approved_file_from(filename) not exists or approved_content != received_content:
+    create received_file_from(filename)  with received_content 
+    fail
+----
+
+=== Improve documentation
+
+We will create another chapter to see what happen to a parrot build with different parameters.
+
+We want to understand what the impact of the voltage on Norwegian Blue speed.  
+
+Think first about the kind of description you want to see.
+What values you need to understand what happen ? 
+Which input and output values ? 
+The actions executed ?
+Then try to present it in a way that the behavior can quickly understood. 
+
+
+
+// * Add specification and specific description
+// * Doc by item, by attribute
+// * Graph by item, all the items
+// * Make one file per document and organize them
+// 
+// * Possible path
+// ** Display a graph to show the result
+// ** Show values until max
+// ** Document Norwegian blue
+// ** Create a test for african parrot
+// ** Use an iteration over enum values
+// ** Display all parrot types
+// ** Create a formatter for a table line
+// ** Display in a table
+// ** Display enum name
+// ** Generate a first document
+// ** Create a test file for generating doc
+
+
+=== From scratch
+
+====
+After experiment the approach on legacy code, we will try it for developing a new feature.
+====
+
+When we developing the formatter, you don't need to approved the file until it looks like you want. 
+Just work on the received file and approve it when you are satisfied with the result.
+
+We want to create a `area` where the `parrot` can travel. 
+This `area` will contain the `parrot` position and `power sources` in some places.
+A `power source` has a value between 0 to 2.
+
+Start by creating a formatter that display the state of the system:
+
+- The `area`.
+- Position of the `parrot` and its speed.
+- Positions of items in `area`.
+
+We can call a method to move the `parrot`.
+After 5 steps, its voltage decrease by 0.1.
+When a `parrot` passes over a `power source`, it takes all its energy. 
+
+
+Don't try to make something too sophisticated. 
+We want to work on the representation more than on the code design.
+It doesn't matter if the code is far from good practice, you can always improve it later.
+
+Remember that we are not doing TDD. 
+Try to forget good testing practices and focus on what you need to produce to allow you to validate.
+
+You don't need to have the expected result (the approved file) before you are writing the code.
+You can just look at the result without validating it until the content corresponds to what you expect.
+
+A test method is responsible for generating a chapter, not testing a single case.
+
+// We can write an algorithm to move the parrot
+// We can compute the time taken pas the parrot travel
+
+
+// What we want to develop another Parrot. 
+// 
+// * put one item in a place
+// * put several items from a place (what happen if there is no place ?) 
+// * continue on next line other direction if not enough place
+// * auto place
+// ** Search first place where it could be stored
+// ** Prefer on the same line.
+// ** Prefer near other same items.
+// ** The goal is to form the biggest group of the same item not necessary on the same line.
+// 
+
+//  ! Do not make another javadoc
+//   Static extraction (when code change, doc is updated) : option list, class list inherit from a specific class(connector, ...), docs list, conf files or scripts, glossary.
+// 
+//   Dynamic extraction executing code (default values, error messages,...) 
+//   Formatting the text
+// 
+// 
+// * Generate from a test
+//   Approval (or git) 
+// * let's play
+//   Retro doc
+//   New development (not tdd => visually check  the result as debugging)
+// 
+// Develop focusing on visualize the result
+
