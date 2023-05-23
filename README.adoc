@@ -1,1 +1,1 @@
-include::pages/index.adoc[]
+include::pages/README.adoc[]
