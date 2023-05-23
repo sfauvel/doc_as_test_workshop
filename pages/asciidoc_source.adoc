@@ -9,16 +9,6 @@ endif::[]
 
 = Asciidoc sources
 
-ifndef::htmlformat[]
-It's not HTMLFORMAT
-endif::[]
-
-ifdef::htmlformat[]
-It's HTMLFORMAT
-endif::[]
-
-page_extension: {page_extension}
-
 You can see the rendering of the code below on this page link:asciidoc.{page_extension}[]
 
 .Asciidoc source code

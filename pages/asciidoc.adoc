@@ -1,3 +1,12 @@
+
+ifndef::htmlformat[]
+:page_extension: adoc
+endif::[]
+
+ifdef::htmlformat[]
+:page_extension: html
+endif::[]
+
 = Asciidoc
 
 You can see the source code used to display this page here link:asciidoc_source.{page_extension}[Asciidoc source]
