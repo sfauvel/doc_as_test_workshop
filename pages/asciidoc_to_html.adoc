@@ -57,7 +57,7 @@ We will add an action that creates HTML files from asciidoc files and commit the
 
 If you cloned the https://github.com/sfauvel/Parrot-Refactoring-Kata[] repository, 
 you find the `.github/workflows/publish_site.yaml` file that configure the action to publish your site.
-You just need to configure the path to your documentation.
+You just need to configure the path to your documentation folder.
 We suggest you put it in a "docs" directory in your test directory.
 
 If you use your own project, create this file with the following code and configure correctly the source dir :
