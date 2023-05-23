@@ -29,7 +29,7 @@ In this workshop we will work on a project that we will test and document.
 You can use any of your projects for this workshop.
 The most important thing is to be comfortable with your development environment.
 The constraints are that you need to be able to run tests on that project and you must be able to write a file to your disk from them.
-It also could be interesting (but not necessarily) to be able to but it in a public github repository to publish the final documentation and share it to other participants.
+It also could be interesting (but not necessarily) to be able to push it in a public github repository to publish the final documentation and share it to other participants.
 
 If you don't have a project, you can clone this repository: link:https://github.com/sfauvel/Parrot-Refactoring-Kata[]. 
 This is a clone of the one on the https://github.com/emilybache[Emily Bache] repository.
@@ -78,7 +78,7 @@ Try to format it to be pleasant to read including:
   * Links to useful resources.
   * Table with information yu want to give about people in your group.
 
-You can found some basic syntaxes examples here: link:pages/asciidoc.{page_extension}[]
+You can found some basic link:pages/asciidoc.{page_extension}[syntaxes examples here] or got to the link:https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/[syntax-quick-reference] page of the asciidoc site.
 
 Push this file in a github repo
 
@@ -191,7 +191,7 @@ bash scripts/checkDocInFolder.sh  ./Python/docs
 ==== Create a method
 
 If you don't want to integrate https://approvaltests.com/[Approvals], 
-you can write a chemical method that does the job and is sufficient for our purposes.
+you can write a simple method that does the job and is sufficient for our purposes.
 
 A simple algorithm that can be integrated in a test framework could be the following one:
 [source, python]
@@ -260,6 +260,7 @@ We can call a method to move the `parrot`.
 After 5 steps, its voltage decrease by 0.1.
 When a `parrot` passes over a `power source`, it takes all its energy. 
 
+
 Don't try to make something too sophisticated. 
 We want to work on the representation more than on the code design.
 It doesn't matter if the code is far from good practice, you can always improve it later.
@@ -271,6 +272,9 @@ You don't need to have the expected result (the approved file) before you are wr
 You can just look at the result without validating it until the content corresponds to what you expect.
 
 A test method is responsible for generating a chapter, not testing a single case.
+
+// We can write an algorithm to move the parrot
+// We can compute the time taken pas the parrot travel
 
 
 // What we want to develop another Parrot. 
