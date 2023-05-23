@@ -136,13 +136,15 @@ Instead of creating this documentation from a program, we are going to use our t
 
 
 * Use a test to generate a file (with 'adoc' extension) containing information from the execution of the application code.
-If you use the Parrot kata with Java, Javascript or Python, there is already a test that generate a file. The test will failed but we will see that on the next chapter. 
+If you use the Parrot kata with Java, Javascript or Python, there is already a test that generate a file. 
+The tests will fail but we will see how to make them passed 
+in the next chapter.
 
 * Write in this file the list of parrots as well as their default speed.
 
 * Improve the writing to have a pleasant document to read.
 
-== Approvals
+== Golden Master
 
 ====
 Now, we have a documentation synchronized with the actual code behavior. 
@@ -166,13 +168,14 @@ We explain several ways to do it.
 
 You can use the https://approvaltests.com/[Approvals] library which is made for that and which is available in several languages.
 
-In the kata Parrot, we have configured this library for the projects in Java, Javascript and Python.
+In the kata Parrot, we have configured this library for the Java, Javascript and Python projects.
 
-Otherwise, you need to configure it for your project. 
-You also need to add a specific configuration to generate files with `adoc` extension and not `txt` one.
+Otherwise, you need to configure it for your project and you have to specify you want to generate output files with `adoc` extension and not `txt` one.
+This can be a little tedious and it may be preferable to use one of the other two ways of doing things that we present next
 
-Files are generated with `received` in their names. 
-You have to rename them replacing `received` by `approved` to accept the content and make it the new reference.
+`Approvals` use an `approved` file as expected reference.
+As long as your content is different from this file, a `received` file is generated to be able to compare the result with the expected one.
+If the `received` file is what you want, you just have to rename it or copy its content to the `approved` file to validate the new reference.
 
 ==== Use a script
 
