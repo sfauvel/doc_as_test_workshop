@@ -1,4 +1,6 @@
-== Asciidoc
+= Asciidoc
+
+You can see the source code used to display this page here link:asciidoc_source.{page_extension}[Asciidoc source]
 
 We use the `asciidoc` format to write our documentation.
 
