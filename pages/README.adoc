@@ -256,35 +256,49 @@ Then try to present it in a way that the behavior can quickly understood.
 After experiment the approach on legacy code, we will try it for developing a new feature.
 ====
 
-When we developing the formatter, you don't need to approved the file until it looks like you want. 
-Just work on the received file and approve it when you are satisfied with the result.
+==== Specification
 
 We want to create a `area` where the `parrot` can travel. 
 This `area` will contain the `parrot` position and `power sources` in some places.
 A `power source` has a value between 0 to 2.
 
-Start by creating a formatter that display the state of the system:
 
-- The `area`.
-- Position of the `parrot` and its speed.
-- Positions of items in `area`.
-
-We can call a method to move the `parrot`.
+We will develop a method to move the `parrot`.
 After 5 steps, its voltage decrease by 0.1.
 When a `parrot` passes over a `power source`, it takes all its energy. 
 
+==== Tips
 
-Don't try to make something too sophisticated. 
-We want to work on the representation more than on the code design.
-It doesn't matter if the code is far from good practice, you can always improve it later.
+* Focus on one behavior at a time.
 
-Remember that we are not doing TDD. 
-Try to forget good testing practices and focus on what you need to produce to allow you to validate.
+* Creating a formatter that show the state of the system.
+//
+// - The `area`.
+// - Position of the `parrot` and its speed.
+// - Positions of items in `area`.
 
-You don't need to have the expected result (the approved file) before you are writing the code.
-You can just look at the result without validating it until the content corresponds to what you expect.
+* You can wait to have a document that suits you before approving it (It's not TDD).
 
-A test method is responsible for generating a chapter, not testing a single case.
+* Several cases can be presented in the same chapter
+
+
+
+// When we developing the formatter, you don't need to approved the file until it looks like you want. 
+// Just work on the received file and approve it when you are satisfied with the result.
+// Start by creating a formatter that display what you need to see about the state of the system.
+// 
+// 
+// Don't try to make something too sophisticated. 
+// We want to work on the representation more than on the code design.
+// It doesn't matter if the code is far from good practice, you can always improve it later.
+// 
+// Remember that we are not doing TDD. 
+// Try to forget good testing practices and focus on what you need to produce to allow you to validate.
+// 
+// You don't need to have the expected result (the approved file) before you are writing the code.
+// You can just look at the result without validating it until the content corresponds to what you expect.
+// 
+// A test method is responsible for generating a chapter, not testing a single case.
 
 // Externalize configuration of the board: always the same but visible in each test
 // Set board from a json or create a report of the state in json
@@ -318,6 +332,14 @@ A test method is responsible for generating a chapter, not testing a single case
 //   New development (not tdd => visually check  the result as debugging)
 // 
 // Develop focusing on visualize the result
+
+== Conclusion
+
+You can send the url of your site on social networks (Twitter: `#DocAsTest`). 
+
+We will discuss your feelings after this experiment.
+
+Thank you all for your participation.
 
 == Resources
 
