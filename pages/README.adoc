@@ -16,6 +16,13 @@ endif::[]
 
 = Doc as Test workshop
 
+// QR code generate by https://www.adobe.com/fr/express/feature/image/qr-code-generator
+
+image:qr_code_workshop.svg[width=400px] +
+https://sfauvel.github.io/doc_as_test_workshop[]
+
+== Introduction
+
 This workshop aims to experiment the 'Doc as Test' approach.
 You can find some information and resources about the concept at https://sfauvel.github.io/documentationtesting/[DocAsTest] site. 
 
@@ -23,8 +30,6 @@ In short, each test method generates a paragraph describing a behavior
 The aggregation of all those paragraphs makes a complete documentation of the product.
 As long as the generated text is the same, the test is passing. 
 Otherwise, something has change and must be verify.
-
-== Content
 
 In this workshop we will work on a project that we will test and document.
 You can use any of your projects for this workshop.
@@ -190,6 +195,11 @@ To approve a file and make it the new reference, you just have to add it in stag
 bash scripts/checkDocInFolder.sh  ./Python/docs
 ----
 
+The script is using the following git command to detect modified files:
+----
+git status -s --no-renames [FOLDER]
+----
+
 
 ==== Create a method
 
@@ -276,8 +286,10 @@ You can just look at the result without validating it until the content correspo
 
 A test method is responsible for generating a chapter, not testing a single case.
 
-// We can write an algorithm to move the parrot
-// We can compute the time taken pas the parrot travel
+// Externalize configuration of the board: always the same but visible in each test
+// Set board from a json or create a report of the state in json
+// Write an algorithm to move the parrot
+// Compute the time taken pas the parrot travel
 
 
 // What we want to develop another Parrot. 
@@ -307,3 +319,15 @@ A test method is responsible for generating a chapter, not testing a single case
 // 
 // Develop focusing on visualize the result
 
+== Resources
+
+[glossary]
+This workshop::             https://sfauvel.github.io/doc_as_test_workshop/[]
+Parrot Kata::               https://github.com/sfauvel/Parrot-Refactoring-Kata[]
+Asciidoc::                  https://docs.asciidoctor.org/asciidoc/latest/[]
+Asciidoc quick reference::  https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/[]
+Approvals::                 https://approvaltests.com/[]
+DocAsTest::                 
+  https://sfauvel.github.io/documentationtesting/[] +
+  https://www.youtube.com/watch?v=1slYI-dBMcc[Human talk (video 10mn in French)] +
+  https://www.youtube.com/watch?v=AQDILnknTJ0&feature=youtu.be[Bdx/IO (video 45mn in French)]
