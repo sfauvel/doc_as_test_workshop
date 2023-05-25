@@ -216,7 +216,7 @@ verify(filename, received_content):
     fail
 ----
 
-=== Improve documentation
+=== Validate existing behavior
 
 We will create another chapter to see what happen to a parrot build with different parameters.
 
@@ -249,13 +249,13 @@ Then try to present it in a way that the behavior can quickly understood.
 // ** Create a test file for generating doc
 
 
-=== From scratch
+=== Validate new developments
 
 ====
 After experiment the approach on legacy code, we will try it for developing a new feature.
 ====
 
-==== Specification
+==== Specifications
 
 We want to create a `area` where the `parrot` can travel. 
 This `area` will contain the `parrot` position and `power sources` in some places.
@@ -281,6 +281,13 @@ When a `parrot` passes over a `power source`, it takes all its energy.
 * Several cases can be presented in the same chapter
 
 
+[%collapsible]
+.Other exercises
+* Compute the time taken by the parrot during the travel.
+* Create a document with only one general case and create a link to the document with all behaviors.
+* Externalize configuration of the board in a method.
+* Create a json report of the board.
+* Write an algorithm that move the parrot to consume all power sources.
 
 // When we developing the formatter, you don't need to approved the file until it looks like you want. 
 // Just work on the received file and approve it when you are satisfied with the result.
@@ -299,10 +306,6 @@ When a `parrot` passes over a `power source`, it takes all its energy.
 // 
 // A test method is responsible for generating a chapter, not testing a single case.
 
-// Externalize configuration of the board: always the same but visible in each test
-// Set board from a json or create a report of the state in json
-// Write an algorithm to move the parrot
-// Compute the time taken pas the parrot travel
 
 
 // What we want to develop another Parrot. 
