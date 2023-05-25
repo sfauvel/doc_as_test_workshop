@@ -1,0 +1,21 @@
+
+
+= DocAsTest Workshop
+
+image::qr_code_workshop.svg[width=45%,align="center"]
+[very_big]#https://sfauvel.github.io/doc_as_test_workshop[]#
+
+++++
+<style>
+#content {
+    max-width: 70%;
+    text-align:center;
+}
+.very_big {
+    font-size: 3em;
+}
+#footer {
+    visibility: hidden;
+}
+</style>
+++++
