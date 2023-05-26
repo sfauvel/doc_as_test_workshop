@@ -168,6 +168,8 @@ We explain several ways to do it.
 
 === Prepare tooling
 
+In this section, we explain several ways to set up minimal tools for this workshop. Choose one of them according to your context.
+
 ==== Approvals
 
 You can use the https://approvaltests.com/[Approvals] library which is made for that and which is available in several languages.
