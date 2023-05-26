@@ -59,8 +59,10 @@ If you cloned the https://github.com/sfauvel/Parrot-Refactoring-Kata[] repositor
 you find the `.github/workflows/publish_site.yaml` file that configure the action to publish your site.
 You just need to configure the path to your documentation folder.
 We suggest you put it in a "docs" directory in your test directory.
+You must have a `README.adoc` file in this folder. 
+It'll become the `index.html` of you site.
 
-If you use your own project, create this file with the following code and configure correctly the source dir :
+If you use your own project, create the `publish_site.yaml` file with the following code and configure correctly the source dir :
 
 .Publish action
 ====
